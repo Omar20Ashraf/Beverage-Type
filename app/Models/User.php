@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'beverage_num'
     ];
 
     /**
@@ -46,5 +47,11 @@ class User extends Authenticatable
     {
         # code...
         return $this->name;
+    }
+
+    public function canBuyBeverage()
+    {
+        # code.
+        return $this->beverage_num < 5;
     }
 }
