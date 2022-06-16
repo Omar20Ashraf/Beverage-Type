@@ -5,8 +5,6 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\Beverage;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class BeverageTest extends TestCase
 {
@@ -25,7 +23,6 @@ class BeverageTest extends TestCase
     }
 
     /**
-     * A basic feature test example.
      * @test
      * @return void
      */
@@ -40,7 +37,6 @@ class BeverageTest extends TestCase
     }
 
     /**
-     * A basic feature test example.
      * @test
      * @return void
      */
@@ -49,6 +45,26 @@ class BeverageTest extends TestCase
         $response = $this->get('/beverage/' . $this->beverage->id);
 
         $response->assertSee($this->beverage->name);
+
+        $response->assertStatus(200);
+    }
+
+    /**
+     * @test
+     * @return void
+     */
+    public function logged_in_user_can_buy_beverage()
+    {
+        $this->authUser();
+
+        $data = [
+            'beverage_id' => $this->beverage->id,
+            'price' => $this->beverage->price,
+        ];
+
+        $response = $this->post('/beverage/buy', $data);
+
+        $this->assertDatabaseHas('purchases',$data);
 
         $response->assertStatus(200);
     }

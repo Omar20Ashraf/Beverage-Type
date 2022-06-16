@@ -8,3 +8,5 @@ Route::get('/', function () {
 });
 
 Route::resource('beverage','BeverageController');
+
+Route::post('beverage/buy','PurchaseController@buy');

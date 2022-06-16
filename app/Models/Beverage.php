@@ -10,7 +10,7 @@ class Beverage extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','type'];
+    protected $fillable = ['name','type','price'];
 
 
     public function buy()
