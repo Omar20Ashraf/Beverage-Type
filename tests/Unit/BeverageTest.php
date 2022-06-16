@@ -22,12 +22,22 @@ class BeverageTest extends TestCase
 
 
     /**
-     * A basic unit test example.
+     * A test beverage has name
      * @test
      * @return void
      */
     public function beverage_has_name()
     {
         $this->assertNotEmpty($this->beverage->name);
+    }
+
+    /**
+     * A beverage has type
+     * @test
+     * @return void
+     */
+    public function beverage_has_type()
+    {
+        $this->assertNotEmpty($this->beverage->type);
     }
 }
